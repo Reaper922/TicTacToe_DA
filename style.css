@@ -1,11 +1,21 @@
+body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
 table {
+    width: 399px;
     border-collapse: collapse;
 }
 
 td {
     position: relative;
-    width: 100px;
-    height: 100px;
+    width: 133px;
+    height: 133px;
     text-align: center;
     border: 5px solid black;
     cursor: pointer;
@@ -31,6 +41,10 @@ td:hover {
     background: rgba(0, 0, 0, 0.1)
 }
 
+.d-none {
+    display: none !important;
+}
+
 .piece {
     position: absolute;
     top: 50%;
@@ -40,6 +54,29 @@ td:hover {
     height: 80px;
 }
 
-.d-none {
-    display: none;
+.player-display {
+    display: inline-flex;
+    margin-bottom: 16px;
+}
+
+.player-label {
+    display: flex;
+    align-items: center;
+    margin: 0 16px;
+}
+
+.player-label img {
+    margin-right: 16px;
+}
+
+.player-label span {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 24px;
+    font-weight: bold;
+
+}
+
+.player-icon {
+    width: 60px;
+    height: 60px;
 }
