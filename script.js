@@ -15,7 +15,6 @@ function init() {
 function setupFields() {
     fieldsEl.forEach((fieldEl, fieldIndex) => {
         fieldEl.addEventListener('click', () => playerTurn(fieldIndex));
-        fieldEl.setAttribute('id', fieldIndex);
         setPieceId(fieldEl);
     });
 }
@@ -27,6 +26,7 @@ function setPieceId(fieldEl) {
 }
 
 function playerTurn(fieldIndex) {
+    if (gameBoard[fieldIndex]) return;
     setGamePiece(fieldIndex);
     changePlayer();
     drawGameBoard();
