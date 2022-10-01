@@ -3,6 +3,7 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    box-sizing: border-box;
     height: 100vh;
     margin: 0;
 }
@@ -79,4 +80,15 @@ td:hover {
 .player-icon {
     width: 60px;
     height: 60px;
+}
+
+.game-container {
+    position: relative;
+}
+
+.line {
+    position: absolute;
+    width: 359px;
+    height: 10px;
+    background: rgba(0, 0, 0, 0.4);
 }

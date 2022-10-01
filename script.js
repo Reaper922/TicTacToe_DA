@@ -29,11 +29,17 @@ function setPieceId(fieldEl) {
 
 function playerTurn(fieldIndex) {
     if (gameBoard[fieldIndex]) return;
+    if (isDraw) return;
+    if (isGameOver) return;
+
     setGamePiece(fieldIndex);
     checkWinner();
-    changePlayer();
-    changePlayerLabel();
     drawGameBoard();
+
+    if (!isDraw && !isGameOver) {
+        changePlayer();
+        changePlayerLabel();
+    }
 }
 
 function setGamePiece(fieldIndex) {
@@ -71,39 +77,39 @@ function checkWinner() {
     // Check Horizontal
     if (gameBoard[0] === gameBoard[1] && gameBoard[1] === gameBoard[2] && gameBoard[0] != 0) {
         isGameOver = true;
-        console.log('winner', currentPlayer);
+        addLine('66.5px', '50%', '0', '1');
     };
     if (gameBoard[3] === gameBoard[4] && gameBoard[4] === gameBoard[5] && gameBoard[3] != 0) {
         isGameOver = true;
-        console.log('winner', currentPlayer);
+        addLine('207px', '50%', '0', '1');
     };
     if (gameBoard[6] === gameBoard[7] && gameBoard[7] === gameBoard[8]  && gameBoard[6] != 0) {
         isGameOver = true;
-        console.log('winner', currentPlayer);
+        addLine('347.5px', '50%', '0', '1');
     };
 
     // Check Vertical
     if (gameBoard[0] === gameBoard[3] && gameBoard[3] === gameBoard[6] && gameBoard[0] != 0) {
         isGameOver = true;
-        console.log('winner', currentPlayer);
+        addLine('207px', '16.3%', '90', '1');
     };
     if (gameBoard[1] === gameBoard[4] && gameBoard[4] === gameBoard[7] && gameBoard[1] != 0) {
         isGameOver = true;
-        console.log('winner', currentPlayer);
+        addLine('207px', '49.8%', '90', '1');
     };
     if (gameBoard[2] === gameBoard[5] && gameBoard[5] === gameBoard[8] && gameBoard[2] != 0) {
+        addLine('207px', '83.6%', '90', '1');
         isGameOver = true;
-        console.log('winner', currentPlayer);
     };
 
     // Check Diagonal
     if (gameBoard[0] === gameBoard[4] && gameBoard[4] === gameBoard[8] && gameBoard[0] != 0) {
         isGameOver = true;
-        console.log('winner', currentPlayer);
+        addLine('50%', '50%', '46', '1.4')
     };
     if (gameBoard[2] === gameBoard[4] && gameBoard[4] === gameBoard[6] && gameBoard[2] != 0) {
         isGameOver = true;
-        console.log('winner', currentPlayer);
+        addLine('50%', '50%', '-46', '1.4')
     };
 
     // Check Draw
@@ -124,6 +130,17 @@ function checkWinner() {
     // }
 }
 
+function addLine(top, left, rotation, scale) {
+    const line = document.createElement('div');
+    const lineContainer = document.getElementById('line-container');
+
+    line.classList.add('line');
+    line.style = `top: ${top};
+                  left: ${left};
+                  transform: translate(-50%, -50%) rotate(${rotation}deg) scaleX(${scale});`;
+
+    lineContainer.appendChild(line);
+}
 
 
 init();
