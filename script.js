@@ -1,6 +1,7 @@
 'use strict';
 
 const FIELDS_EL = document.querySelectorAll('td');
+const SOUND_LIGHT_SABER = new Audio('./sound/lightsaber.mp3');
 
 let gameBoard = new Array(9);
 let currentPlayer = 1;
@@ -22,16 +23,28 @@ function setupFields() {
     });
 }
 
-function setupButtons() {
-    const REPLAY_BUTTON = document.getElementById('replay-button');
-
-    REPLAY_BUTTON.addEventListener('click', resetGame);
-}
-
 function setPieceId(fieldEl) {
     [...fieldEl.children].forEach((piece, pieceIndex) => {
         piece.setAttribute('id', pieceIndex + 1);
     })
+}
+
+function setupButtons() {
+    const SINGLEPLAYER_BTN = document.getElementById('singeplayer-button');
+    const MULTIPLAYER_BTN = document.getElementById('multiplayer-button');
+    const REPLAY_BTN = document.getElementById('replay-button');
+
+    SINGLEPLAYER_BTN.addEventListener('click', startSingleplayer);
+    MULTIPLAYER_BTN.addEventListener('click', startMultiplayer);
+    REPLAY_BTN.addEventListener('click', resetGame);
+}
+
+function startSingleplayer() {
+    console.log('Singeplayer');
+}
+
+function startMultiplayer() {
+    console.log('Multiplayer');
 }
 
 function playerTurn(fieldIndex) {
@@ -79,45 +92,53 @@ function drawGameBoard() {
         } else if (gameBoard[fieldIndex] === 2) {
             fieldEl.children[1].classList.remove('d-none');
         }
-    })
+    });
 }
 
 function checkWinner() {
     // Check Horizontal
     if (gameBoard[0] === gameBoard[1] && gameBoard[1] === gameBoard[2] && gameBoard[0] != 0) {
         isGameOver = true;
+        SOUND_LIGHT_SABER.play();
         addLine('71.5px', '50%', '0', '1');
     };
     if (gameBoard[3] === gameBoard[4] && gameBoard[4] === gameBoard[5] && gameBoard[3] != 0) {
         isGameOver = true;
+        SOUND_LIGHT_SABER.play();
         addLine('214.5px', '50%', '0', '1');
     };
     if (gameBoard[6] === gameBoard[7] && gameBoard[7] === gameBoard[8]  && gameBoard[6] != 0) {
         isGameOver = true;
+        SOUND_LIGHT_SABER.play();
         addLine('356.5px', '50%', '0', '1');
     };
 
     // Check Vertical
     if (gameBoard[0] === gameBoard[3] && gameBoard[3] === gameBoard[6] && gameBoard[0] != 0) {
         isGameOver = true;
+        SOUND_LIGHT_SABER.play();
         addLine('214.5px', '69px', '90', '1');
     };
     if (gameBoard[1] === gameBoard[4] && gameBoard[4] === gameBoard[7] && gameBoard[1] != 0) {
         isGameOver = true;
+        SOUND_LIGHT_SABER.play();
         addLine('214.5px', '50%', '90', '1');
     };
     if (gameBoard[2] === gameBoard[5] && gameBoard[5] === gameBoard[8] && gameBoard[2] != 0) {
-        addLine('214.5px', '331px', '90', '1');
         isGameOver = true;
+        SOUND_LIGHT_SABER.play();
+        addLine('214.5px', '331px', '90', '1');
     };
 
     // Check Diagonal
     if (gameBoard[0] === gameBoard[4] && gameBoard[4] === gameBoard[8] && gameBoard[0] != 0) {
         isGameOver = true;
+        SOUND_LIGHT_SABER.play();
         addLine('50%', '50%', '47', '1.4');
     };
     if (gameBoard[2] === gameBoard[4] && gameBoard[4] === gameBoard[6] && gameBoard[2] != 0) {
         isGameOver = true;
+        SOUND_LIGHT_SABER.play();
         addLine('50%', '50%', '-47', '1.4');
     };
 
@@ -128,8 +149,6 @@ function checkWinner() {
             isDraw = false
         };
     }
-
-    if (isDraw && !isGameOver) console.log('draw');
 
     // for (let index = 0; index < 3; index++) {
     //     // Check Vertical
