@@ -11,63 +11,80 @@
 </head>
 
 <body>
-    <div class="player-display">
-        <div class="player-label" id="player1-label">
-            <img src="./img/cross.png" class="player-icon">
-            <span>Player&nbsp1</span>
+    <!-- Start Screen -->
+    <!-- <div class="end-screen d-none" id="end-screen">
+        <div class="end-screen-content">
+            <img src="./img/circle.png">
+            <span>Player X wins the game!</span>
+            <button class="replay-button">Play again</button>
         </div>
-        <div class="player-label d-none" id="player2-label">
-            <img src="./img/circle.png" class="player-icon">
-            <span>Player&nbsp2</span>
+    </div> -->
+    <!-- Game -->
+    <div class="game-container" id="game-container">
+        <div class="player-display">
+            <div class="player-label" id="player1-label">
+                <img src="./img/cross.png" class="player-icon" draggable="false">
+                <span>Player&nbsp1</span>
+            </div>
+            <div class="player-label d-none" id="player2-label">
+                <img src="./img/circle.png" class="player-icon" draggable="false">
+                <span>Player&nbsp2</span>
+            </div>
+        </div>
+        <div class="table-container">
+            <table>
+                <tr>
+                    <td>
+                        <img src="./img/cross.png" class="piece d-none" draggable="false">
+                        <img src="./img/circle.png" class="piece d-none" draggable="false">
+                    </td>
+                    <td>
+                        <img src="./img/cross.png" class="piece d-none" draggable="false">
+                        <img src="./img/circle.png" class="piece d-none" draggable="false">
+                    </td>
+                    <td>
+                        <img src="./img/cross.png" class="piece d-none" draggable="false">
+                        <img src="./img/circle.png" class="piece d-none" draggable="false">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <img src="./img/cross.png" class="piece d-none" draggable="false">
+                        <img src="./img/circle.png" class="piece d-none" draggable="false">
+                    </td>
+                    <td>
+                        <img src="./img/cross.png" class="piece d-none" draggable="false">
+                        <img src="./img/circle.png" class="piece d-none" draggable="false">
+                    </td>
+                    <td>
+                        <img src="./img/cross.png" class="piece d-none" draggable="false">
+                        <img src="./img/circle.png" class="piece d-none" draggable="false">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <img src="./img/cross.png" class="piece d-none" draggable="false">
+                        <img src="./img/circle.png" class="piece d-none" draggable="false">
+                    </td>
+                    <td>
+                        <img src="./img/cross.png" class="piece d-none" draggable="false">
+                        <img src="./img/circle.png" class="piece d-none" draggable="false">
+                    </td>
+                    <td>
+                        <img src="./img/cross.png" class="piece d-none" draggable="false">
+                        <img src="./img/circle.png" class="piece d-none" draggable="false">
+                    </td>
+                </tr>
+            </table>
+            <div id="line-container"></div>
         </div>
     </div>
-    <div class="game-container">
-        <table>
-            <tr>
-                <td>
-                    <img src="./img/cross.png" class="piece d-none">
-                    <img src="./img/circle.png" class="piece d-none">
-                </td>
-                <td>
-                    <img src="./img/cross.png" class="piece d-none">
-                    <img src="./img/circle.png" class="piece d-none">
-                </td>
-                <td>
-                    <img src="./img/cross.png" class="piece d-none">
-                    <img src="./img/circle.png" class="piece d-none">
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <img src="./img/cross.png" class="piece d-none">
-                    <img src="./img/circle.png" class="piece d-none">
-                </td>
-                <td>
-                    <img src="./img/cross.png" class="piece d-none">
-                    <img src="./img/circle.png" class="piece d-none">
-                </td>
-                <td>
-                    <img src="./img/cross.png" class="piece d-none">
-                    <img src="./img/circle.png" class="piece d-none">
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <img src="./img/cross.png" class="piece d-none">
-                    <img src="./img/circle.png" class="piece d-none">
-                </td>
-                <td>
-                    <img src="./img/cross.png" class="piece d-none">
-                    <img src="./img/circle.png" class="piece d-none">
-                </td>
-                <td>
-                    <img src="./img/cross.png" class="piece d-none">
-                    <img src="./img/circle.png" class="piece d-none">
-                </td>
-            </tr>
-        </table>
-        <div id="line-container">
-            <!-- <div class="line"></div> -->
+    <!-- End Screen -->
+    <div class="end-screen d-none" id="end-screen">
+        <div class="end-screen-content">
+            <img src="./img/circle.png">
+            <span>Player X wins the game!</span>
+            <button class="replay-button" id="replay-button">Play again</button>
         </div>
     </div>
 </body>

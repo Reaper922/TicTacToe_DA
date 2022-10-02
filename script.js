@@ -12,6 +12,7 @@ function init() {
     gameBoard.fill(0);
 
     setupFields();
+    setupButtons();
 }
 
 function setupFields() {
@@ -19,6 +20,12 @@ function setupFields() {
         fieldEl.addEventListener('click', () => playerTurn(fieldIndex));
         setPieceId(fieldEl);
     });
+}
+
+function setupButtons() {
+    const REPLAY_BUTTON = document.getElementById('replay-button');
+
+    REPLAY_BUTTON.addEventListener('click', resetGame);
 }
 
 function setPieceId(fieldEl) {
@@ -35,6 +42,8 @@ function playerTurn(fieldIndex) {
     setGamePiece(fieldIndex);
     checkWinner();
     drawGameBoard();
+
+    if (isDraw || isGameOver) showEndScreen();
 
     if (!isDraw && !isGameOver) {
         changePlayer();
@@ -77,39 +86,39 @@ function checkWinner() {
     // Check Horizontal
     if (gameBoard[0] === gameBoard[1] && gameBoard[1] === gameBoard[2] && gameBoard[0] != 0) {
         isGameOver = true;
-        addLine('66.5px', '50%', '0', '1');
+        addLine('71.5px', '50%', '0', '1');
     };
     if (gameBoard[3] === gameBoard[4] && gameBoard[4] === gameBoard[5] && gameBoard[3] != 0) {
         isGameOver = true;
-        addLine('207px', '50%', '0', '1');
+        addLine('214.5px', '50%', '0', '1');
     };
     if (gameBoard[6] === gameBoard[7] && gameBoard[7] === gameBoard[8]  && gameBoard[6] != 0) {
         isGameOver = true;
-        addLine('347.5px', '50%', '0', '1');
+        addLine('356.5px', '50%', '0', '1');
     };
 
     // Check Vertical
     if (gameBoard[0] === gameBoard[3] && gameBoard[3] === gameBoard[6] && gameBoard[0] != 0) {
         isGameOver = true;
-        addLine('207px', '16.3%', '90', '1');
+        addLine('214.5px', '69px', '90', '1');
     };
     if (gameBoard[1] === gameBoard[4] && gameBoard[4] === gameBoard[7] && gameBoard[1] != 0) {
         isGameOver = true;
-        addLine('207px', '49.8%', '90', '1');
+        addLine('214.5px', '50%', '90', '1');
     };
     if (gameBoard[2] === gameBoard[5] && gameBoard[5] === gameBoard[8] && gameBoard[2] != 0) {
-        addLine('207px', '83.6%', '90', '1');
+        addLine('214.5px', '331px', '90', '1');
         isGameOver = true;
     };
 
     // Check Diagonal
     if (gameBoard[0] === gameBoard[4] && gameBoard[4] === gameBoard[8] && gameBoard[0] != 0) {
         isGameOver = true;
-        addLine('50%', '50%', '46', '1.4')
+        addLine('50%', '50%', '47', '1.4');
     };
     if (gameBoard[2] === gameBoard[4] && gameBoard[4] === gameBoard[6] && gameBoard[2] != 0) {
         isGameOver = true;
-        addLine('50%', '50%', '-46', '1.4')
+        addLine('50%', '50%', '-47', '1.4');
     };
 
     // Check Draw
@@ -131,15 +140,52 @@ function checkWinner() {
 }
 
 function addLine(top, left, rotation, scale) {
-    const line = document.createElement('div');
-    const lineContainer = document.getElementById('line-container');
+    const LINE = document.createElement('div');
+    const LINE_CONTAINER = document.getElementById('line-container');
 
-    line.classList.add('line');
-    line.style = `top: ${top};
+    LINE.classList.add('line');
+    LINE.style = `top: ${top};
                   left: ${left};
                   transform: translate(-50%, -50%) rotate(${rotation}deg) scaleX(${scale});`;
 
-    lineContainer.appendChild(line);
+    LINE_CONTAINER.appendChild(LINE);
+}
+
+function showEndScreen() {
+    setTimeout(() => {
+        const END_SCREEN = document.getElementById('end-screen');
+
+        END_SCREEN.classList.remove('d-none');
+        END_SCREEN.classList.add('active');
+    }, 2000);
+}
+
+function hideEndScreen() {
+    const END_SCREEN = document.getElementById('end-screen');
+
+    END_SCREEN.classList.add('d-none');
+    END_SCREEN.classList.remove('active');
+}
+
+function hidePieces() {
+    FIELDS_EL.forEach((fieldEl) => {
+        fieldEl.children[0].classList.add('d-none');
+        fieldEl.children[1].classList.add('d-none');
+    })
+}
+
+function resetGame() {
+    const LINE_CONTAINER = document.getElementById('line-container');
+
+    currentPlayer = 1;
+    isDraw = false;
+    isGameOver = false;
+    gameBoard.fill(0);
+    LINE_CONTAINER.innerHTML = '';
+
+    hidePieces();
+    hideEndScreen();
+    drawGameBoard();
 }
 
 
