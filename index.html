@@ -15,7 +15,11 @@
     <!-- Start Screen -->
     <div class="screen" id="start-screen">
         <div class="start-screen-content">
-            <span class="title">TIC<br>TAC<br>TOE</span>
+            <span class="title">
+                <span class="t-color">T</span>I<span class="t-color">C</span><br>
+                T<span class="t-color">A</span>C<br>
+                <span class="t-color">T</span>O<span class="t-color">E</span><br>
+            </span>
             <button class="button" id="singeplayer-button">Singeplayer</button>
             <button class="button" id="multiplayer-button">Multiplayer</button>
         </div>
@@ -83,9 +87,10 @@
     <!-- End Screen -->
     <div class="screen d-none" id="end-screen">
         <div class="end-screen-content">
-            <img src="./img/circle.png">
-            <span>Player X wins the game!</span>
+            <img src="" id="winner-icon">
+            <span id="winner-text"></span>
             <button class="button" id="replay-button">Play again</button>
+            <button class="button" id="menu-button">Back to menu</button>
         </div>
     </div>
 </body>

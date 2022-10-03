@@ -33,10 +33,12 @@ function setupButtons() {
     const SINGLEPLAYER_BTN = document.getElementById('singeplayer-button');
     const MULTIPLAYER_BTN = document.getElementById('multiplayer-button');
     const REPLAY_BTN = document.getElementById('replay-button');
+    const MENU_BTN = document.getElementById('menu-button');
 
     SINGLEPLAYER_BTN.addEventListener('click', startSingleplayer);
     MULTIPLAYER_BTN.addEventListener('click', startMultiplayer);
     REPLAY_BTN.addEventListener('click', resetGame);
+    MENU_BTN.addEventListener('click', showMenu);
 }
 
 function startSingleplayer() {
@@ -44,7 +46,11 @@ function startSingleplayer() {
 }
 
 function startMultiplayer() {
-    console.log('Multiplayer');
+    const START_SCREEN = document.getElementById('start-screen');
+    const GAME_CONTAINER = document.getElementById('game-container');
+
+    START_SCREEN.classList.add('d-none');
+    GAME_CONTAINER.classList.remove('d-none');
 }
 
 function playerTurn(fieldIndex) {
@@ -145,7 +151,7 @@ function checkWinner() {
     // Check Draw
     isDraw = true;
     for (let field of gameBoard) {
-        if (field === 0) {
+        if (field === 0 || isGameOver) {
             isDraw = false
         };
     }
@@ -171,12 +177,29 @@ function addLine(top, left, rotation, scale) {
 }
 
 function showEndScreen() {
+    updateEndScreenLabel();
+
     setTimeout(() => {
         const END_SCREEN = document.getElementById('end-screen');
 
         END_SCREEN.classList.remove('d-none');
         END_SCREEN.classList.add('active');
     }, 2000);
+}
+
+function updateEndScreenLabel() {
+    const WINNER_TEXT = document.getElementById('winner-text');
+    const WINNER_ICON = document.getElementById('winner-icon');
+
+    if (isGameOver) {
+        WINNER_TEXT.innerHTML = `Player ${currentPlayer} wins the game!`;
+        WINNER_ICON.src = currentPlayer === 1 ? './img/cross.png' : './img/circle.png';
+    }
+
+    if (isDraw) {
+        WINNER_TEXT.innerHTML = 'Draw!';
+        WINNER_ICON.src = '';
+    }
 }
 
 function hideEndScreen() {
@@ -205,6 +228,16 @@ function resetGame() {
     hidePieces();
     hideEndScreen();
     drawGameBoard();
+}
+
+function showMenu() {
+    const START_SCREEN = document.getElementById('start-screen');
+    const GAME_CONTAINER = document.getElementById('game-container');
+
+    START_SCREEN.classList.remove('d-none');
+    GAME_CONTAINER.classList.add('d-none');
+
+    resetGame();
 }
 
 

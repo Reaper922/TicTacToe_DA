@@ -142,6 +142,11 @@ td:hover {
 
 .title {
     font-size: 120px;
+    text-shadow: -2px -2px 12px #D504D9, 2px -2px 12px #D504D9;
+}
+
+.t-color {
+    color: #D504D9;
 }
 
 .end-screen-content {
@@ -149,11 +154,14 @@ td:hover {
     justify-content: space-between;
     align-items: center;
     flex-direction: column;
-    height: 300px;
 }
 
 .end-screen-content span {
     text-shadow: -2px -2px 12px #D504D9, 2px -2px 12px #D504D9;
+}
+
+#winner-icon {
+    margin-bottom: 16px;
 }
 
 .button {
